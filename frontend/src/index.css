@@ -63,16 +63,6 @@ a {
 a:hover {
   color: #ff8000;
 }
-header a {
-  color: #ffff;
-  padding: 1em;
-}
-
-a.brand {
-  color: #fff;
-  font-size: 3rem;
-  font-weight: bold;
-}
 
 ul {
   padding: 0;
@@ -100,29 +90,54 @@ button:hover {
   border: 0.1rem #404040 solid;
 }
 button.primary {
-  background-color: #f0c040;
+  background-color: #039191;
+  color: ghostwhite;
 }
 button.block {
   width: 100%;
 }
+/* Header */
+
+header a {
+  color: #ffff;
+  padding: 1em;
+}
+
+a.brand {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.badge {
+  background-color: #039191;
+  color: ghostwhite;
+  border-radius: 50%;
+  padding: 0.2rem 0.7rem;
+  font-size: 1.4rem;
+  margin-left: 0.5rem;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
+.row.center {
+  justify-content: center;
+}
 .row.top {
   align-items: flex-start;
 }
+
 .col-1 {
   flex: 1 1 25rem;
   margin: 1rem;
 }
+
 .col-2 {
   flex: 2 1 50rem;
-}
-.row.center {
-  justify-content: center;
 }
 
 /* Image */
