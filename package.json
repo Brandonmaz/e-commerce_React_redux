@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/Brandonmaz/e-commerce_React_redux#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.12.2"
   },
   "devDependencies": {
     "eslint": "^7.23.0",
