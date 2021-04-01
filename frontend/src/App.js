@@ -14,7 +14,7 @@ function App() {
         <header className="row">
           <div>
             <Link className="brand" to="/">
-              Love for Ceramics
+              Store for You
             </Link>
           </div>
           <div>

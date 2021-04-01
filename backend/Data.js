@@ -1,7 +1,21 @@
+import bcrypt from "bcryptjs";
 const Data = {
+  users: [
+    {
+      name: "Brandon",
+      email: "admin@example.com",
+      password: bcrypt.hashSync("1234", 8),
+      isAdmin: true,
+    },
+    {
+      name: "Banu",
+      email: "user@example.com",
+      password: bcrypt.hashSync("1234", 8),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
-      _id: "1",
       name: "Artisan Hand Painted Earthenware",
       category: "Ceramics",
       image: "/images/p1.jpeg",
@@ -14,7 +28,6 @@ const Data = {
         "Sculpted and finished by hand to look like timeworn antiques, these rustic vases add an element of charm and character. For a collected look, try placing multiples together, bringing them to life with your favorite botanicals.",
     },
     {
-      _id: "2",
       name: "Urbana Ceramic Bud Vases",
       category: "Ceramics",
       image: "/images/p2.jpeg",
@@ -27,7 +40,6 @@ const Data = {
         "Sculpted by the hands of artisans, this collection of bud vases is our modernization of a heritage craft. With barely-there ridges and clean silhouettes, they features matte finishes of dreamy white and jet black. Display earthy green branches and bright, energizing florals to add pops of color.",
     },
     {
-      _id: "3",
       name: "Hunter Handmade Collection",
       category: "Ceramics",
       image: "/images/p3.jpeg",
@@ -40,7 +52,6 @@ const Data = {
         "Embracing the beauty in imperfection, the Hunter Handmade Terra Cotta Collection is a medley of stunning handmade ceramics drenched in a glossy green glaze. Parts of the pieces are left unfinished, showcasing the earthy quality of terra-cotta in a homespun way.",
     },
     {
-      _id: "4",
       name: "Hand Painted Planters",
       category: "Ceramics",
       image: "/images/p4.jpeg",
@@ -53,7 +64,6 @@ const Data = {
         "Glazed with a contrasting fleur-de-lys pattern, this ceramic cachepot has an unfinished rim and foot for rustic, artisanal appeal. Simply add a favorite house plant or any of our faux botanicals for an eye-catching display or housewarming gift.",
     },
     {
-      _id: "5",
       name: "Modern Black Planter",
       category: "Ceramics",
       image: "/images/p5.jpeg",
@@ -66,7 +76,6 @@ const Data = {
         "Take your houseplant style up a notch with these sleek, modern ceramic planters. Designed with a deep saucer to protect your surfaces and create stylish dimension, the black finish really lets your foliage pop.",
     },
     {
-      _id: "6",
       name: "Lilian Hand Painted Vases",
       category: "Ceramics",
       image: "/images/p6.jpeg",
@@ -79,7 +88,6 @@ const Data = {
         "A floral print adds delicate contrast to the rustic features of this vase.",
     },
     {
-      _id: "7",
       name: "Tuscan Handcrafted Vases",
       category: "Ceramics",
       image: "/images/p7.jpeg",
@@ -92,7 +100,6 @@ const Data = {
         "These amply sized ceramics evoke the feeling of the Italian countryside. Each terra cotta piece is hand thrown and hand glazed in white with a rustic crackle finish.",
     },
     {
-      _id: "8",
       name: "Ethan Metal & Ceramic Lights",
       category: "Ceramics",
       image: "/images/p8.jpeg",
@@ -105,7 +112,6 @@ const Data = {
         "Vintage crockery inspired the shapes of these ceramic shades, making our Ethan Linear Multi-Pendant a perfect choice for illuminating a counter, kitchen island or breakfast nook. The staggered heights allow the light to cast a radiating glow.",
     },
     {
-      _id: "9",
       name: "Layla Ceramic Vases",
       category: "Ceramics",
       image: "/images/p9.jpeg",
@@ -118,7 +124,6 @@ const Data = {
         "Decidedly global, the Layla Ceramic Vases capture the spirit of found, one-of-a-kind objects. Use them to add style and height to your favorite houseplants.",
     },
     {
-      _id: "10",
       name: "Eclectic Villa Planters",
       category: "Ceramics",
       image: "/images/p10.jpeg",
