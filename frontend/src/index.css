@@ -228,11 +228,17 @@ img.small {
 }
 .form label {
   margin: 1rem 0;
-  display: block;
+  
 }
 .form input {
   background-color: #e0e4ea;
   border-color: none;
+}
+#paypal {
+  margin: 1em;
+}
+#stripe {
+  margin: 1em;
 }
 /* Drop Down */
 .dropdown {
