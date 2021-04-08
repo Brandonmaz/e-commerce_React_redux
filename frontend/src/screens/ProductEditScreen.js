@@ -5,7 +5,6 @@ import { detailsProduct, updateProduct } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
-import { userSigninReducer } from "../reducers/userReducers";
 
 export default function ProductEditScreen(props) {
   const productId = props.match.params.id;
