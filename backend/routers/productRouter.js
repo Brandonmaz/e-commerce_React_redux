@@ -18,19 +18,19 @@ productRouter.get(
   })
 );
 
-// productRouter.get(
-//   "/seed",
-//   expressAsyncHandler(async (req, res) => {
-//     // await Product.remove({});
-//     try {
-//       const createdProducts = await Product.insertMany(Data.products);
-//       res.send({ createdProducts });
-//     } catch (error) {
-//       res.send("You have an error");
-//       console.log(error);
-//     }
-//   })
-// );
+productRouter.get(
+  "/seed",
+  expressAsyncHandler(async (req, res) => {
+    // await Product.remove({});
+    try {
+      const createdProducts = await Product.insertMany(Data.products);
+      res.send({ createdProducts });
+    } catch (error) {
+      res.send("You have an error");
+      console.log(error);
+    }
+  })
+);
 productRouter.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
