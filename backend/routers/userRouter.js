@@ -1,7 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import Data from "../Data.js";
 import bcrypt from "bcryptjs";
+import Data from "../Data.js";
 import User from "../models/userModel.js";
 import { generateToken, isAuth } from "../utils.js";
 const userRouter = express.Router();
@@ -12,7 +12,7 @@ userRouter.get(
       const createdUsers = await User.insertMany(Data.users);
       res.send({ createdUsers });
     } catch (error) {
-      res.send("you have an error in user seed");
+      res.send("you have an error");
       console.log(error);
     }
   })
@@ -80,6 +80,7 @@ userRouter.put(
       res.send({
         _id: updatedUser._id,
         name: updatedUser.name,
+        isAdmin: updatedUser.isAdmin,
         email: updatedUser.email,
         isAdmin: updatedUser.isAdmin,
         token: generateToken(updatedUser),
