@@ -12,7 +12,7 @@ userRouter.get(
       const createdUsers = await User.insertMany(Data.users);
       res.send({ createdUsers });
     } catch (error) {
-      res.send("you have an error");
+      res.send("you have an error in user seed");
       console.log(error);
     }
   })

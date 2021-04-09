@@ -12,7 +12,7 @@ productRouter.get(
       const products = await Product.find({});
       res.send(products);
     } catch (error) {
-      res.send("You might have an error");
+      res.send("You might have an error in home screen");
       console.log(error);
     }
   })
@@ -26,7 +26,7 @@ productRouter.get(
       const createdProducts = await Product.insertMany(Data.products);
       res.send({ createdProducts });
     } catch (error) {
-      res.send("You have an error");
+      res.send("You have an error with product seed");
       console.log(error);
     }
   })
