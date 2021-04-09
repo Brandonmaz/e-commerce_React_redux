@@ -1,11 +1,9 @@
 import express from "express";
-import Data from "../Data.js";
 import expressAsyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
+import Data from "../Data.js";
 import { isAdmin, isAuth } from "../utils.js";
-
 const productRouter = express.Router();
-
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
@@ -13,21 +11,20 @@ productRouter.get(
       const products = await Product.find({});
       res.send(products);
     } catch (error) {
-      res.send("You might have an error in home screen");
+      res.send("you have an error on route '/' ");
       console.log(error);
     }
   })
 );
-
 productRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
-    // await Product.remove({});
     try {
+      await Product.remove({});
       const createdProducts = await Product.insertMany(Data.products);
       res.send({ createdProducts });
     } catch (error) {
-      res.send("You have an error with product seed");
+      res.send("you have an error on route '/seed'");
       console.log(error);
     }
   })
@@ -43,7 +40,8 @@ productRouter.get(
         res.status(404).send({ message: "Product Not Found" });
       }
     } catch (error) {
-      res.send("Yeah! you have an error");
+      res.send("you have an error on route '/:id' ");
+      console.log(error);
     }
   })
 );
@@ -97,7 +95,7 @@ productRouter.delete(
     const product = await Product.findById(req.params.id);
     if (product) {
       const deleteProduct = await product.remove();
-      res.send({ message: "Product Deleted", product: deleteProduct });
+      res.send({ message: "Product Deleted", product: deletProduct });
     } else {
       res.status(404).send({ message: "Product Not Found" });
     }
