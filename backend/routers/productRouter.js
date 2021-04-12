@@ -2,13 +2,15 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
 import Data from "../Data.js";
-import { isAdmin, isAuth } from "../utils.js";
+import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 const productRouter = express.Router();
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     try {
-      const products = await Product.find({});
+      const seller = req.query.seller || "";
+      const sellerFilter = seller ? { seller } : {};
+      const products = await Product.find({ ...sellerFilter });
       res.send(products);
     } catch (error) {
       res.send("you have an error on route '/' ");
@@ -48,10 +50,11 @@ productRouter.get(
 productRouter.post(
   "/",
   isAuth,
-  isAdmin,
+  isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = new Product({
       name: "sample name" + Date.now(),
+      seller: req.user._id,
       image: "/images/addImage.png",
       price: 0,
       category: "sample category",
@@ -68,7 +71,7 @@ productRouter.post(
 productRouter.put(
   "/:id",
   isAuth,
-  isAdmin,
+  isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId);
