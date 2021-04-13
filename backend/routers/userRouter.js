@@ -17,6 +17,14 @@ userRouter.get(
     }
   })
 );
+// userRouter.get(
+//   "/seed",
+//   expressAsyncHandler(async (req, res) => {
+//     await User.remove({});
+//     const createdUsers = await User.insertMany(Data.users);
+//     res.send({ createdUsers });
+//   })
+// );
 userRouter.post(
   "/signin",
   expressAsyncHandler(async (req, res) => {

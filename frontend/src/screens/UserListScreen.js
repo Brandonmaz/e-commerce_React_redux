@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, listUsers } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
-import MeassageBox from "../components/MessageBox";
+import MessageBox from "../components/MessageBox";
 import { USER_DETAILS_RESET } from "../constants/userConstants";
 
 export default function UserListScreen(props) {
@@ -30,14 +30,14 @@ export default function UserListScreen(props) {
     <div>
       <h1>Users</h1>
       {loadingDelete && <LoadingBox></LoadingBox>}
-      {errorDelete && <MeassageBox variant="danger">{errorDelete}</MeassageBox>}
+      {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
       {successDelete && (
-        <MeassageBox variant="success">User Deleted Successfully</MeassageBox>
+        <MessageBox variant="success">User Deleted Successfully</MessageBox>
       )}
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
-        <MeassageBox variant="danger">{error}</MeassageBox>
+        <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <table className="table">
           <thead>
