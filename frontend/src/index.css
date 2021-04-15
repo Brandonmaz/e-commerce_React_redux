@@ -305,8 +305,19 @@ img.small {
 }
 /* Carousel */
 .carousel .slide img {
-  max-width: 30rem;
+  max-width: 25rem;
+  /* background-color: #fff; */
 }
 .carousel{
-  background-color: black;
+  background-color: #000;
+}
+.carousel .slide .legend {
+  width: 20% !important;
+  margin-left: 0 !important;
+  left: 40% !important;
+  background: ghostwhite !important;
+  color: #000 !important;
+  font-size: 20px !important;
+  font-weight: bold;
+  bottom: 25px !important;
 }
