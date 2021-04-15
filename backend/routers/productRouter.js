@@ -8,12 +8,14 @@ productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     try {
+      const name = req.query.name || "";
       const seller = req.query.seller || "";
+      const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
       const sellerFilter = seller ? { seller } : {};
-      const products = await Product.find({ ...sellerFilter }).populate(
-        "seller",
-        "seller.name seller.logo"
-      );
+      const products = await Product.find({
+        ...sellerFilter,
+        ...nameFilter,
+      }).populate("seller", "seller.name seller.logo");
       res.send(products);
     } catch (error) {
       res.send("you have an error on route '/' ");
