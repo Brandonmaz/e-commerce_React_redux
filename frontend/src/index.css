@@ -208,12 +208,13 @@ img.small {
 }
 /* Card */
 .card {
-  border: 0.1rem solid #c0c0c0;
-  background-color: #f8f8f8;
-  border-radius: .5rem;
+  border: 0.1rem solid #dfdfdf;
+  /* background-color: #f8f8f8; */
   margin: 1rem;
 }
-
+.card img  {
+  border-radius: 0;
+}
 .card-body {
   padding: 1rem;
 }
@@ -364,4 +365,7 @@ img.small {
   border-radius: 0.5rem 0 0 0.5rem;
   border-right: none;
   margin-left: 0.5rem;
+}
+.active {
+  font-weight: bold;
 }
