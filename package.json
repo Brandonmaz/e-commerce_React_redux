@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build":"cd frontend && npm install && npm run build",
+    "build": "cd frontend && npm install && npm run build",
     "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Brandonmaz/e-commerce_React_redux#readme",
   "dependencies": {
+    "@react-google-maps/api": "^2.1.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -32,5 +33,8 @@
     "eslint-plugin-react": "^7.23.1",
     "nodemon": "^2.0.7"
   },
-  "engines":{"node":"14.15.0", "npm":"7.5.6"}
+  "engines": {
+    "node": "14.15.0",
+    "npm": "7.5.6"
+  }
 }
