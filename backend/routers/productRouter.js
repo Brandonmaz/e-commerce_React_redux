@@ -63,13 +63,21 @@ productRouter.get(
 productRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
-    try {
-      await Product.remove({});
-      const createdProducts = await Product.insertMany(Data.products);
+    // await Product.remove({})
+    const seller = await User.findOne({ isSeller: true });
+    if (seller) {
+      const products =
+        data /
+        products.map((product) => ({
+          ...product,
+          seller: seller._id,
+        }));
+      const createdProducts = await Product.insertMany(products);
       res.send({ createdProducts });
-    } catch (error) {
-      res.send("you have an error on route '/seed'");
-      console.log(error);
+    } else {
+      res
+        .status(500)
+        .send({ message: "No seller found. First run /api/users/seed" });
     }
   })
 );

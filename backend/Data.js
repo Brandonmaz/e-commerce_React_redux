@@ -6,6 +6,14 @@ const Data = {
       email: "admin@example.com",
       password: bcrypt.hashSync("1234", 8),
       isAdmin: true,
+      isSeller: true,
+      seller: {
+        name: "Brandon",
+        logo: "/images/logo.png",
+        description: "Top seller",
+        rating: 4.5,
+        numReviews: 120,
+      },
     },
     {
       name: "Banu",
