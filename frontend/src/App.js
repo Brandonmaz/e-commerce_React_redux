@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Link, Route } from "react-router-dom";
-import { listProductCategories } from "./actions/productActions";
-import { signout } from "./actions/userActions";
-import AdminRoute from "./components/AdminRoute";
-import LoadingBox from "./components/LoadingBox";
-import MessageBox from "./components/MessageBox";
-import PrivateRoute from "./components/PrivateRoute";
-import SearchBox from "./components/SearchBox";
-import SellerRoute from "./components/SellerRoute";
-import CartScreen from "./screens/CartScreen";
 import HomeScreen from "./screens/HomeScreen";
-import MapScreen from "./screens/MapScreen";
-import OrderHistoryScreen from "./screens/OrderHistoryScreen";
-import OrderListScreen from "./screens/OrderListScreen";
-import OrderScreen from "./screens/OrderScreen";
+import ProductScreen from "./screens/ProductScreen";
+import { BrowserRouter, Link, Route } from "react-router-dom";
+import CartScreen from "./screens/CartScreen";
+import { useDispatch, useSelector } from "react-redux";
+import SigninScreen from "./screens/SigninScreen";
+import { signout } from "./actions/userActions";
+import RegisterScreen from "./screens/RegisterScreen";
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
-import ProductEditScreen from "./screens/ProductEditScreen";
-import ProductListScreen from "./screens/ProductListScreen";
-import ProductScreen from "./screens/ProductScreen";
+import OrderScreen from "./screens/OrderScreen";
+import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import RegisterScreen from "./screens/RegsiterScreen";
-import SearchScreen from "./screens/SearchScreen";
-import SellerScreen from "./screens/SellerScreen";
-import ShippingAddressScreen from "./screens/ShippingAddressScreen";
-import SigninScreen from "./screens/SigninScreen";
-import UserEditScreen from "./screens/UserEditScreen";
+import PrivateRoute from "./components/PrivateRoute";
+import ProductListScreen from "./screens/ProductListScreen";
+import AdminRoute from "./components/AdminRoute";
+import ProductEditScreen from "./screens/ProductEditScreen";
+import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
-
+import UserEditScreen from "./screens/UserEditScreen";
+import SellerRoute from "./components/SellerRoute";
+import SellerScreen from "./screens/SellerScreen";
+import SearchBox from "./components/SearchBox";
+import SearchScreen from "./screens/SearchScreen";
+import { listProductCategories } from "./actions/productActions";
+import LoadingBox from "./components/LoadingBox";
+import MessageBox from "./components/MessageBox";
+import MapScreen from "./screens/MapScreen";
 function App() {
   const cart = useSelector((state) => state.cart);
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  const [sidebarIsOpen, setSideBarIsOpen] = useState(false);
   const { cartItems } = cart;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
@@ -56,12 +55,12 @@ function App() {
             <button
               type="button"
               className="open-sidebar"
-              onClick={() => setSidebarIsOpen(true)}
+              onClick={() => setSideBarIsOpen(true)}
             >
-              <i className="fa fa-bars"></i>
+              <icon className="fa fa-bars"></icon>
             </button>
             <Link className="brand" to="/">
-              Store for You
+              The Store
             </Link>
           </div>
           <div>
@@ -81,7 +80,8 @@ function App() {
             {userInfo ? (
               <div className="dropdown">
                 <Link to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>
+                  {userInfo.name}
+                  {""} <i className="fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
                   <li>
@@ -103,12 +103,12 @@ function App() {
             {userInfo && userInfo.isSeller && (
               <div className="dropdown">
                 <Link to="#admin">
-                  Seller <i className="fa fa-caret-down"></i>
+                  Seller<i className=" fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
-                  <li>
+                  <>
                     <Link to="/productlist/seller">Products</Link>
-                  </li>
+                  </>
                   <li>
                     <Link to="/orderlist/seller">Orders</Link>
                   </li>
@@ -118,7 +118,7 @@ function App() {
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
                 <Link to="#admin">
-                  Admin <i className="fa fa-caret-down"></i>
+                  Admin<i className=" fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
                   <li>
@@ -143,7 +143,7 @@ function App() {
             <li>
               <strong>Categories</strong>
               <button
-                onClick={() => setSidebarIsOpen(false)}
+                onClick={() => setSideBarIsOpen(false)}
                 className="close-sidebar"
                 type="button"
               >
@@ -159,7 +159,7 @@ function App() {
                 <li key={c}>
                   <Link
                     to={`/search/category/${c}`}
-                    onClick={() => setSidebarIsOpen(false)}
+                    onClick={() => setSideBarIsOpen(false)}
                   >
                     {c}
                   </Link>
@@ -172,9 +172,13 @@ function App() {
           <Route path="/seller/:id" component={SellerScreen}></Route>
           <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/product/:id" component={ProductScreen} exact></Route>
-          <Route path="/product/:id/edit" component={ProductEditScreen}></Route>
+          <Route
+            path="/product/:id/edit"
+            component={ProductEditScreen}
+            exact
+          ></Route>
           <Route path="/signin" component={SigninScreen} exact></Route>
-          <Route path="/register" component={RegisterScreen} exact></Route>
+          <Route path="/register" component={RegisterScreen}></Route>
           <Route path="/shipping" component={ShippingAddressScreen}></Route>
           <Route path="/payment" component={PaymentMethodScreen}></Route>
           <Route path="/placeorder" component={PlaceOrderScreen}></Route>
@@ -220,25 +224,37 @@ function App() {
             component={OrderListScreen}
             exact
           ></AdminRoute>
+          <AdminRoute
+            path="/orderlist/pageNumber/:pageNumber"
+            component={OrderListScreen}
+            exact
+          ></AdminRoute>
           <AdminRoute path="/userlist" component={UserListScreen}></AdminRoute>
           <AdminRoute
             path="/user/:id/edit"
             component={UserEditScreen}
           ></AdminRoute>
+          <Route path="/" component={HomeScreen} exact></Route>
           <SellerRoute
             path="/productlist/seller"
+            component={ProductListScreen}
+          ></SellerRoute>
+          <SellerRoute
+            path="/productlist/seller/pageNumber/:pageNumber"
             component={ProductListScreen}
           ></SellerRoute>
           <SellerRoute
             path="/orderlist/seller"
             component={OrderListScreen}
           ></SellerRoute>
-          <Route path="/" component={HomeScreen} exact></Route>
+          <SellerRoute
+            path="/orderlist/seller/pageNumber/:pageNumber"
+            component={OrderListScreen}
+          ></SellerRoute>
         </main>
-        <footer className="row center">All Rights Reserved</footer>
+        <footer className="row center">All right reserved</footer>
       </div>
     </BrowserRouter>
   );
 }
-
 export default App;

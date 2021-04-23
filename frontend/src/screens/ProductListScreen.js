@@ -49,14 +49,14 @@ export default function ProductListScreen(props) {
     createdProduct,
     dispatch,
     props.history,
+    sellerMode,
     successCreate,
     successDelete,
     userInfo._id,
-    sellerMode,
     pageNumber,
   ]);
   const deleteHandler = (product) => {
-    if (window.confirm("Do you want to Delete?"))
+    if (window.confirm("Are You Sure.... Confirm Delete"))
       dispatch(deleteProduct(product._id));
   };
   const createHandler = () => {
@@ -84,6 +84,7 @@ export default function ProductListScreen(props) {
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Image</th>
                 <th>NAME</th>
                 <th>PRICE</th>
                 <th>CATEGORY</th>
@@ -95,6 +96,11 @@ export default function ProductListScreen(props) {
               {products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="small"
+                  ></img>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.category}</td>
