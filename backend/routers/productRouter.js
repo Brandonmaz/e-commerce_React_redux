@@ -1,13 +1,14 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
-import Data from "../Data.js";
 import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 const productRouter = express.Router();
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     try {
+      const pageSize = 6;
+      const page = Number(req.query.pageNumber) || 1;
       const name = req.query.name || "";
       const category = req.query.category || "";
       const seller = req.query.seller || "";
@@ -37,6 +38,13 @@ productRouter.get(
           : order === "toprated"
           ? { rating: -1 }
           : { _id: -1 };
+      const count = await Product.count({
+        ...sellerFilter,
+        ...nameFilter,
+        ...categoryFilter,
+        ...priceFilter,
+        ...ratingFilter,
+      });
       const products = await Product.find({
         ...sellerFilter,
         ...nameFilter,
@@ -45,8 +53,10 @@ productRouter.get(
         ...ratingFilter,
       })
         .populate("seller", "seller.name seller.logo")
-        .sort(sortOrder);
-      res.send(products);
+        .sort(sortOrder)
+        .skip(pageSize * (page - 1))
+        .limit(pageSize);
+      res.send({ products, page, pages: Math.ceil(count / pageSize) });
     } catch (error) {
       res.send("you have an error on route '/' ");
       console.log(error);
