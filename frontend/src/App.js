@@ -28,6 +28,7 @@ import { listProductCategories } from "./actions/productActions";
 import LoadingBox from "./components/LoadingBox";
 import MessageBox from "./components/MessageBox";
 import MapScreen from "./screens/MapScreen";
+import DashboardScreen from "./screens/DashboardScreen";
 function App() {
   const cart = useSelector((state) => state.cart);
   const [sidebarIsOpen, setSideBarIsOpen] = useState(false);
@@ -57,7 +58,7 @@ function App() {
               className="open-sidebar"
               onClick={() => setSideBarIsOpen(true)}
             >
-              <icon className="fa fa-bars"></icon>
+              <i className="fa fa-bars"></i>
             </button>
             <Link className="brand" to="/">
               The Store
@@ -233,6 +234,10 @@ function App() {
           <AdminRoute
             path="/user/:id/edit"
             component={UserEditScreen}
+          ></AdminRoute>
+          <AdminRoute
+            path="/dashboard"
+            component={DashboardScreen}
           ></AdminRoute>
           <Route path="/" component={HomeScreen} exact></Route>
           <SellerRoute
