@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Brandonmaz/e-commerce_React_redux#readme",
   "dependencies": {
     "@react-google-maps/api": "^2.1.1",
+    "aws-sdk": "^2.899.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -27,7 +28,8 @@
     "jsonwebtoken": "^8.5.1",
     "mailgun-js": "^0.22.0",
     "mongoose": "^5.12.3",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0"
   },
   "devDependencies": {
     "eslint": "^7.23.0",
