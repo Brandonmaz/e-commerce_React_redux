@@ -1,6 +1,5 @@
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import config from "./config.js";
 import path from "path";
 import productRouter from "./routers/productRouter.js";
@@ -8,19 +7,18 @@ import userRouter from "./routers/userRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import uploadRouter from "./routers/uploadRouter.js";
 
+const mongodbUrl = config.MONGODB_URL;
 const paypal = config.PAYPAL_CLIENT_ID;
 const googleApi = config.GOOGLE_API_KEY;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const mongodbUrl = config.MONGODB_URL;
-mongoose
-  .connect(mongodbUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
-  .catch((error) => console.log(error.reason));
+
+mongoose.connect(mongodbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
 app.use("/api/uploads", uploadRouter);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
