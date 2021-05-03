@@ -24,8 +24,8 @@ uploadRouter.post("/", isAuth, upload.single("image"), (req, res) => {
   res.send(`/${req.file.path}`);
 });
 aws.config.update({
-  accessKeyId: config.accessKeyId,
-  secretAccessKey: config.secretAccessKey,
+  AWS_ACCESS_KEY_ID: config.AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY: config.AWS_SECRET_ACCESS_KEY,
 });
 const s3 = new aws.S3();
 const storageS3 = multerS3({
